@@ -1,0 +1,29 @@
+import time
+import matplotlib.pyplot as plt
+
+def monitor_temperature():
+    # Initialize the temperature array
+    temperature = []
+
+    # Start a loop to monitor the temperature every hour
+    while True:
+        # Get the current time
+        current_time = time.time()
+
+        # Get the current temperature in F
+        current_temperature = 85
+
+        # Append the current temperature to the temperature array
+        temperature.append(current_temperature)
+
+        # Sleep for 1 minute
+        time.sleep(60)
+
+    # Plot the temperature over time
+    plt.plot(temperature)
+    plt.xlabel('Time (hours)')
+    plt.ylabel('Temperature (F)')
+    plt.show()
+
+if __name__ == '__main__':
+    monitor_temperature()
