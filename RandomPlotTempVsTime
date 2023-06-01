@@ -1,0 +1,11 @@
+import random
+import matplotlib.pyplot as plt
+
+# Generate random temperature readings in the 80s
+temperatures = [random.randint(80, 90) for i in range(60)]
+
+# Plot the temperature readings over time
+plt.plot(temperatures)
+plt.xlabel('Time (minutes)')
+plt.ylabel('Temperature (F)')
+plt.show()
