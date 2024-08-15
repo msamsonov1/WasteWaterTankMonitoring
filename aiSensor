@@ -1,0 +1,45 @@
+import random
+import time
+import datetime
+
+class Sensor:
+    def __init__(self, id, location, sensor_type):
+        self.id = id
+        self.location = location
+        self.sensor_type = sensor_type
+        self.data = []
+
+    def generate_data(self):
+        # Simulate sensor data generation
+        timestamp = datetime.datetime.now()
+        if self.sensor_type == "flow":
+            data = random.randint(100, 500)  # Replace with actual flow sensor readings
+        elif self.sensor_type == "pH":
+            data = round(random.uniform(6.5, 8.5), 2)  # Replace with actual pH sensor readings
+        elif self.sensor_type == "temperature":
+            data = round(random.uniform(10, 30), 2)  # Replace with actual temperature sensor readings
+        else:
+            data = None
+        self.data.append((timestamp, data))
+        return data
+
+class MonitoringSystem:
+    def __init__(self):
+        self.sensors = []
+
+    def add_sensor(self, sensor):
+        self.sensors.append(sensor)
+
+    def start_monitoring(self):
+        while True:
+            for sensor in self.sensors:
+                data = sensor.generate_data()
+                print(f"Sensor {sensor.id} at {sensor.location}: {data}")
+            time.sleep(60)  # Adjust sampling interval as needed
+
+# Example usage
+monitoring_system = MonitoringSystem()
+monitoring_system.add_sensor(Sensor(1, "Inlet", "flow"))
+monitoring_system.add_sensor(Sensor(2, "Outlet", "pH"))
+monitoring_system.add_sensor(Sensor(3, "Pump Station", "temperature"))
+monitoring_system.start_monitoring()
